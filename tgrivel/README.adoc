@@ -1,0 +1,58 @@
+= Journal
+
+== Try to use qemu instead of virtual box
+
+. Replace virtualbox with qemu in `p1/Vagrantfile`
++
+[source, patch]
+----
+    ...
+-   control.vm.provider "virtualbox" do |vb|
+-           vb.memory = "512"
++   control.vm.provider "qemu" do |qe|
++           qe.memory = "512"
+    ...
+----
+
+. Install libvirt plugin with vagrant
++
+----
+vagrant plugin install vagrant-libvrt
+vagrant plugin install libvrt
+----
++
+but I receive this error message
++
+----
+Vagrant failed to load a configured plugin source. This can be caused
+by a variety of issues including: transient connectivity issues, proxy
+filtering rejecting access to a configured plugin source, or a configured
+plugin source not responding correctly. Please review the error message
+below to help resolve the issue:
+
+  Net::OpenTimeout: Failed to open TCP connection to gems.hashicorp.com:443 (execution expired) (https://gems.hashicorp.com/specs.4.8.gz)
+
+Source: https://gems.hashicorp.com/
+----
+
+== Install virtualbox on archlinux
+
+Install "virtualbox-host-modules-arch" for my Arch Linux
+
+Install virtualbox plugin
++
+----
+vagrant plugin install virtualbox
+----
++
+I receive this
++
+----
+The provider 'virtualbox' that was requested to back the machine
+'epresa-cS' is reporting that it isn't usable on this system. The
+reason is shown below:
+
+VirtualBox is complaining that the kernel module is not loaded. Please
+run `VBoxManage --version` or open the VirtualBox GUI to see the error
+message which should contain instructions on how to fix this error.
+----
