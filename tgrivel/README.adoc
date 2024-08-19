@@ -249,6 +249,21 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOWG7FyvvixzfNOgf6pR2IgNqjtBlGO06bnVAmTIp/XD
 
 It's interresting, because we can understand that vagrant create automaticly ssh keys for the connection
 
+== Setup a VPS
+
+I discover a nice feature, https://en.wikipedia.org/wiki/Wake-on-LAN[Wake-on-LAN]
+
+resouce: https://wiki.archlinux.org/title/Wake-on-LAN#On_the_same_LAN[arch wiki]
+
+Got my mate public key with
+
+----
+curl https://github.com/${USERNAME}.keys
+----
+
+I choosed Arch linux as VPS ditribution because I am use to with this one.
+And I want to know what is the best between arch and debian...
+
 == Meetings
 
 === Cyber reunion
@@ -258,3 +273,7 @@ ____
 ____
 
 Why CentOS ?
+
+No particular reasons
+
+tgrivel want to setup a VPS at home for working
