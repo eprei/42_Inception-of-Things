@@ -264,6 +264,29 @@ curl https://github.com/${USERNAME}.keys
 I choosed Arch linux as VPS ditribution because I am use to with this one.
 And I want to know what is the best between arch and debian...
 
+== VPS user
+
+----
+[theo@iot ~]$ vagrant plugin install virtualbox
+Installing the 'virtualbox' plugin. This can take a few minutes...
+Vagrant failed to properly resolve required dependencies. These
+errors can commonly be caused by misconfigured plugin installations
+or transient network issues. The reported error is:
+
+conflicting dependencies bigdecimal (= 3.1.3) and bigdecimal (= 3.1.8)
+  Activated bigdecimal-3.1.8
+  which does not match conflicting dependency (= 3.1.3)
+
+  Conflicting dependency chains:
+    bigdecimal (= 3.1.8), 3.1.8 activated
+
+  versus:
+    bigdecimal (= 3.1.3)
+
+  Gems matching bigdecimal (= 3.1.3):
+    bigdecimal-3.1.3
+----
+
 == Meetings
 
 === Cyber reunion
