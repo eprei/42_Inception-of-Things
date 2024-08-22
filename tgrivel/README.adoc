@@ -1,5 +1,13 @@
 = My notes
 
+== Documentation
+
+. Launch machines
++
+----
+vagrant up
+----
+
 == Journal
 
 === Try to use qemu instead of virtual box
