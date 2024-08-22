@@ -454,6 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_try_to_install_k3s_on_cenos">2.9. Try to install k3s on CenOS</a></li>
 <li><a href="#_k3s_server_and_agent">2.10. K3S : Server and Agent</a></li>
 <li><a href="#_troubleshooting_vagrant_up_take_times">2.11. Troubleshooting: vagrant up take times</a></li>
+<li><a href="#_try_steps_manualy">2.12. Try steps manualy</a></li>
 </ul>
 </li>
 <li><a href="#_meetings">3. Meetings</a>
@@ -1126,6 +1127,26 @@ INFO[0009] Waiting to retrieve agent configuration; server is not ready: Get "ht
 INFO[0035] Waiting to retrieve agent configuration; server is not ready: failed to get CA certs: Get "https://127.0.0.1:6444/cacerts": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
 INFO[0042] Waiting to retrieve agent configuration; server is not ready: failed to get CA certs: Get "https://127.0.0.1:6444/cacerts": read tcp 127.0.0.1:50090-&gt;127.0.0.1:6444: read: connection reset by peer</pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_try_steps_manualy">2.12. Try steps manualy</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Remove commands in shell script provision.</p>
+</li>
+<li>
+<p>Manipulate server manually</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt update ; sudo apt install -y curl
+sudo curl -Lo /usr/local/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.26.5+k3s1/k3s; sudo chmod a+x /usr/local/bin/k3s
+sudo K3S_KUBECONFIG_MODE="644" K3S_TOKEN="mypassword" /usr/local/bin/k3s server --flannel-backend none --flannel-iface "eth1"</pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

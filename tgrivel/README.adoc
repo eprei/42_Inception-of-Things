@@ -540,6 +540,17 @@ INFO[0035] Waiting to retrieve agent configuration; server is not ready: failed 
 INFO[0042] Waiting to retrieve agent configuration; server is not ready: failed to get CA certs: Get "https://127.0.0.1:6444/cacerts": read tcp 127.0.0.1:50090->127.0.0.1:6444: read: connection reset by peer
 ----
 
+=== Try steps manualy
+
+. Remove commands in shell script provision.
+
+. Manipulate server manually
++
+----
+sudo apt update ; sudo apt install -y curl
+sudo curl -Lo /usr/local/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.26.5+k3s1/k3s; sudo chmod a+x /usr/local/bin/k3s
+sudo K3S_KUBECONFIG_MODE="644" K3S_TOKEN="mypassword" /usr/local/bin/k3s server --flannel-backend none --flannel-iface "eth1"
+----
 
 == Meetings
 
