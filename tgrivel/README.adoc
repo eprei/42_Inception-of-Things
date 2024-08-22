@@ -347,6 +347,8 @@ Could not retrieve mirrorlist http://mirrorlist.centos.org/?release=7&arch=x86_6
 Cannot find a valid baseurl for repo: base/7/x86_64
 ----
 
+CenOS is yet deprecated (see https://rockylinux.org/about[rocky linux about]) so we changed for Debian.
+
 == Meetings
 
 === Cyber reunion
