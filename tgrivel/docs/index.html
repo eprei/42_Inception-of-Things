@@ -1056,6 +1056,77 @@ ERRO[0021] apiserver exited: problem initializing API group "batch" : context de
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Environment file are in <code>/etc/systemd/system/k3s.service.env</code> or in <code>/etc/systemd/system/k3s-agent.service.env</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Try to curl</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant@theoSW:~$ curl https://127.0.0.1:6444/cacerts
+curl: (60) SSL certificate problem: self-signed certificate
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+vagrant@theoSW:~$ curl --insecure https://127.0.0.1:6444/cacerts
+404 page not found
+vagrant@theoSW:~$ curl --insecure https://127.0.0.1:6445/index.html
+curl: (7) Failed to connect to 127.0.0.1 port 6445 after 0 ms: Couldn't connect to server</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I think that <code>cacerts</code> does not exist</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant@theoSW:~$ curl --insecure https://192.168.56.110:6443/cacerts
+-----BEGIN CERTIFICATE-----
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+-----END CERTIFICATE-----</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I retried with port in server flag</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant@theoSW:~$ sudo /usr/local/bin/k3s agent '--server' 'https://192.168.56.110:6443' --flannel-iface 'eth1' --token mypassword --debug
+INFO[0000] Found ip 192.168.56.111 from iface eth1
+INFO[0000] Starting k3s agent v1.30.3+k3s1 (f6466040)
+INFO[0000] Adding server to load balancer k3s-agent-load-balancer: 192.168.56.110:6443
+INFO[0000] Running load balancer k3s-agent-load-balancer 127.0.0.1:6444 -&gt; [192.168.56.110:6443] [default: 192.168.56.110:6443]
+DEBU[0000] Supervisor proxy using supervisor=https://127.0.0.1:6444 apiserver=https://127.0.0.1:6444 lb=true
+ERRO[0000] failed to get CA certs: Get "https://127.0.0.1:6444/cacerts": read tcp 127.0.0.1:36370-&gt;127.0.0.1:6444: read: connection reset by peer
+WARN[0002] Cluster CA certificate is not trusted by the host CA bundle, but the token does not include a CA hash. Use the full token from the server's node-token file to enable Cluster CA validation.
+INFO[0002] Waiting to retrieve agent configuration; server is not ready: CA cert validation failed: Get "https://127.0.0.1:6444/cacerts": EOF
+INFO[0009] Waiting to retrieve agent configuration; server is not ready: Get "https://127.0.0.1:6444/v1-k3s/client-ca.crt": read tcp 127.0.0.1:37912-&gt;127.0.0.1:6444: read: connection reset by peer
+INFO[0035] Waiting to retrieve agent configuration; server is not ready: failed to get CA certs: Get "https://127.0.0.1:6444/cacerts": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+INFO[0042] Waiting to retrieve agent configuration; server is not ready: failed to get CA certs: Get "https://127.0.0.1:6444/cacerts": read tcp 127.0.0.1:50090-&gt;127.0.0.1:6444: read: connection reset by peer</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
