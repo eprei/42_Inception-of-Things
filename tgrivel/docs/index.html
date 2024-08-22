@@ -440,31 +440,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_documentation">1. Documentation</a></li>
-<li><a href="#_journal">2. Journal</a>
+<li><a href="#_glossary">1. Glossary</a></li>
+<li><a href="#_documentation">2. Documentation</a></li>
+<li><a href="#_journal">3. Journal</a>
 <ul class="sectlevel2">
-<li><a href="#_try_to_use_qemu_instead_of_virtual_box">2.1. Try to use qemu instead of virtual box</a></li>
-<li><a href="#_install_virtualbox_on_archlinux">2.2. Install virtualbox on archlinux</a></li>
-<li><a href="#_launch_vagrant">2.3. Launch vagrant</a></li>
-<li><a href="#_add_an_environment_variable_to_the_vagrantfile">2.4. Add an environment variable to the vagrantfile</a></li>
-<li><a href="#_connect_over_ssh">2.5. Connect over SSH</a></li>
-<li><a href="#_get_the_sshd_config">2.6. Get the sshd config</a></li>
-<li><a href="#_setup_a_vps">2.7. Setup a VPS</a></li>
-<li><a href="#_vps_user">2.8. VPS user</a></li>
-<li><a href="#_try_to_install_k3s_on_cenos">2.9. Try to install k3s on CenOS</a></li>
-<li><a href="#_k3s_server_and_agent">2.10. K3S : Server and Agent</a></li>
-<li><a href="#_troubleshooting_vagrant_up_take_times">2.11. Troubleshooting: vagrant up take times</a></li>
-<li><a href="#_try_steps_manualy">2.12. Try steps manualy</a></li>
+<li><a href="#_try_to_use_qemu_instead_of_virtual_box">3.1. Try to use qemu instead of virtual box</a></li>
+<li><a href="#_install_virtualbox_on_archlinux">3.2. Install virtualbox on archlinux</a></li>
+<li><a href="#_launch_vagrant">3.3. Launch vagrant</a></li>
+<li><a href="#_add_an_environment_variable_to_the_vagrantfile">3.4. Add an environment variable to the vagrantfile</a></li>
+<li><a href="#_connect_over_ssh">3.5. Connect over SSH</a></li>
+<li><a href="#_get_the_sshd_config">3.6. Get the sshd config</a></li>
+<li><a href="#_setup_a_vps">3.7. Setup a VPS</a></li>
+<li><a href="#_vps_user">3.8. VPS user</a></li>
+<li><a href="#_try_to_install_k3s_on_cenos">3.9. Try to install k3s on CenOS</a></li>
+<li><a href="#_k3s_server_and_agent">3.10. K3S : Server and Agent</a></li>
+<li><a href="#_troubleshooting_vagrant_up_take_times">3.11. Troubleshooting: vagrant up take times</a></li>
+<li><a href="#_try_steps_manualy">3.12. Try steps manualy</a></li>
 </ul>
 </li>
-<li><a href="#_meetings">3. Meetings</a>
+<li><a href="#_meetings">4. Meetings</a>
 <ul class="sectlevel2">
-<li><a href="#_cyber_reunion">3.1. Cyber reunion</a></li>
+<li><a href="#_cyber_reunion">4.1. Cyber reunion</a></li>
 </ul>
 </li>
-<li><a href="#_resources">4. Resources</a>
+<li><a href="#_resources">5. Resources</a>
 <ul class="sectlevel2">
-<li><a href="#_claude">4.1. Claude</a></li>
+<li><a href="#_claude">5.1. Claude</a></li>
 </ul>
 </li>
 </ul>
@@ -472,7 +473,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_documentation">1. Documentation</h2>
+<h2 id="_glossary">1. Glossary</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">VXLAN</dt>
+<dd>
+<p><a href="https://en.wikipedia.org/wiki/Virtual_Extensible_LAN">Virtual Extensible LAN</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentation">2. Documentation</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -489,10 +503,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_journal">2. Journal</h2>
+<h2 id="_journal">3. Journal</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_try_to_use_qemu_instead_of_virtual_box">2.1. Try to use qemu instead of virtual box</h3>
+<h3 id="_try_to_use_qemu_instead_of_virtual_box">3.1. Try to use qemu instead of virtual box</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -537,7 +551,7 @@ Source: https://gems.hashicorp.com/</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_install_virtualbox_on_archlinux">2.2. Install virtualbox on archlinux</h3>
+<h3 id="_install_virtualbox_on_archlinux">3.2. Install virtualbox on archlinux</h3>
 <div class="paragraph">
 <p>Install "virtualbox-host-modules-arch" for my Arch Linux</p>
 </div>
@@ -575,7 +589,7 @@ message which should contain instructions on how to fix this error.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_launch_vagrant">2.3. Launch vagrant</h3>
+<h3 id="_launch_vagrant">3.3. Launch vagrant</h3>
 <div class="listingblock">
 <div class="content">
 <pre>vagrant up</pre>
@@ -689,7 +703,7 @@ Download redirected to host: cloud.centos.org
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_an_environment_variable_to_the_vagrantfile">2.4. Add an environment variable to the vagrantfile</h3>
+<h3 id="_add_an_environment_variable_to_the_vagrantfile">3.4. Add an environment variable to the vagrantfile</h3>
 <div class="paragraph">
 <p>Resource: <a href="https://www.ryanchapin.com/using-environment-variables-in-a-vagrant-file/">Using Environment Variables in a Vagrant File</a></p>
 </div>
@@ -726,7 +740,7 @@ Message: undefined method `to_sym'</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_connect_over_ssh">2.5. Connect over SSH</h3>
+<h3 id="_connect_over_ssh">3.5. Connect over SSH</h3>
 <div class="paragraph">
 <p>Launch</p>
 </div>
@@ -746,7 +760,7 @@ vagrant ssh epresa-cSW</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_the_sshd_config">2.6. Get the sshd config</h3>
+<h3 id="_get_the_sshd_config">3.6. Get the sshd config</h3>
 <div class="paragraph">
 <p>After to be connected to the machine, I print the sshd config</p>
 </div>
@@ -786,7 +800,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOWG7FyvvixzfNOgf6pR2IgNqjtBlGO06bnVAmTIp/XD
 </div>
 </div>
 <div class="sect2">
-<h3 id="_setup_a_vps">2.7. Setup a VPS</h3>
+<h3 id="_setup_a_vps">3.7. Setup a VPS</h3>
 <div class="paragraph">
 <p>I discover a nice feature, <a href="https://en.wikipedia.org/wiki/Wake-on-LAN">Wake-on-LAN</a></p>
 </div>
@@ -807,7 +821,7 @@ And I want to know what is the best between arch and debian&#8230;&#8203;</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_vps_user">2.8. VPS user</h3>
+<h3 id="_vps_user">3.8. VPS user</h3>
 <div class="listingblock">
 <div class="content">
 <pre>[theo@iot ~]$ vagrant plugin install virtualbox
@@ -843,7 +857,7 @@ ufw default allow outgoing # get access to the web</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_try_to_install_k3s_on_cenos">2.9. Try to install k3s on CenOS</h3>
+<h3 id="_try_to_install_k3s_on_cenos">3.9. Try to install k3s on CenOS</h3>
 <div class="listingblock">
 <div class="content">
 <pre>[vagrant@epresa-cS ~]$ curl -sfL https://get.k3s.io | sh -
@@ -898,7 +912,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_k3s_server_and_agent">2.10. K3S : Server and Agent</h3>
+<h3 id="_k3s_server_and_agent">3.10. K3S : Server and Agent</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -924,7 +938,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_troubleshooting_vagrant_up_take_times">2.11. Troubleshooting: vagrant up take times</h3>
+<h3 id="_troubleshooting_vagrant_up_take_times">3.11. Troubleshooting: vagrant up take times</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -1130,7 +1144,7 @@ INFO[0042] Waiting to retrieve agent configuration; server is not ready: failed 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_try_steps_manualy">2.12. Try steps manualy</h3>
+<h3 id="_try_steps_manualy">3.12. Try steps manualy</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1152,10 +1166,10 @@ sudo K3S_KUBECONFIG_MODE="644" K3S_TOKEN="mypassword" /usr/local/bin/k3s server 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_meetings">3. Meetings</h2>
+<h2 id="_meetings">4. Meetings</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_cyber_reunion">3.1. Cyber reunion</h3>
+<h3 id="_cyber_reunion">4.1. Cyber reunion</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -1176,7 +1190,7 @@ sudo K3S_KUBECONFIG_MODE="644" K3S_TOKEN="mypassword" /usr/local/bin/k3s server 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_resources">4. Resources</h2>
+<h2 id="_resources">5. Resources</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Kubernetes Book (Nigel Poulton) : <a href="https://github.com/rohitg00/DevOps_Books/blob/main/The%20Kubernetes%20Book%20(Nigel%20Poulton)%20(z-lib.org).pdf" class="bare">https://github.com/rohitg00/DevOps_Books/blob/main/The%20Kubernetes%20Book%20(Nigel%20Poulton)%20(z-lib.org).pdf</a></p>
@@ -1202,7 +1216,7 @@ Kubernetes Playground : <a href="https://labs.play-with-k8s.com/" class="bare">h
 HashiCorp Cloud Platform</p>
 </div>
 <div class="sect2">
-<h3 id="_claude">4.1. Claude</h3>
+<h3 id="_claude">5.1. Claude</h3>
 <div class="sect3">
 <h4 id="_what_is_the_diference_between_k3s_server_and_k3s_agent">what is the diference between k3s server and k3s agent ?</h4>
 <div class="paragraph">

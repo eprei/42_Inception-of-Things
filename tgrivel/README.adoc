@@ -1,5 +1,9 @@
 = My notes
 
+== Glossary
+
+VXLAN:: https://en.wikipedia.org/wiki/Virtual_Extensible_LAN[Virtual Extensible LAN]
+
 == Documentation
 
 . Launch machines
