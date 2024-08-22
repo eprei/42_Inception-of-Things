@@ -451,6 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_setup_a_vps">1.7. Setup a VPS</a></li>
 <li><a href="#_vps_user">1.8. VPS user</a></li>
 <li><a href="#_try_to_install_k3s_on_cenos">1.9. Try to install k3s on CenOS</a></li>
+<li><a href="#_k3s_server_and_agent">1.10. K3S : Server and Agent</a></li>
 </ul>
 </li>
 <li><a href="#_meetings">2. Meetings</a>
@@ -874,6 +875,32 @@ Cannot find a valid baseurl for repo: base/7/x86_64</pre>
 </div>
 <div class="paragraph">
 <p>CenOS is yet deprecated (see <a href="https://rockylinux.org/about">rocky linux about</a>) so we changed for Debian.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_k3s_server_and_agent">1.10. K3S : Server and Agent</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Resource: <a href="https://docs.k3s.io/installation/configuration#configuration-with-install-script">Configuration with install script</a></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>First machine (Server)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server" sh -s - --flannel-backend none --token "mypassword"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Second machine (ServerWorker)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent" K3S_TOKEN="mypassword" sh -s - --server https://192.168.56.110</pre>
+</div>
 </div>
 </div>
 </div>

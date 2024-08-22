@@ -349,6 +349,24 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
 CenOS is yet deprecated (see https://rockylinux.org/about[rocky linux about]) so we changed for Debian.
 
+=== K3S : Server and Agent
+
+____
+Resource: https://docs.k3s.io/installation/configuration#configuration-with-install-script[Configuration with install script]
+____
+
+First machine (Server)
+
+----
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server" sh -s - --flannel-backend none --token "mypassword"
+----
+
+Second machine (ServerWorker)
+
+----
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent" K3S_TOKEN="mypassword" sh -s - --server https://192.168.56.110
+----
+
 == Meetings
 
 === Cyber reunion
