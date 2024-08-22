@@ -1,9 +1,8 @@
 Vagrant.configure(2) do |config|
-	# config.vm.box = "debian/bookworm64"
-	config.vm.box = "centos/7"
+	config.vm.box = "debian/bookworm64"
 	config.vm.synced_folder '.', '/vagrant', disabled: true
 	config.vm.define "epresa-cS" do |control|
-		control.vm.hostname = "epresa-cS"
+		control.vm.hostname = ENV['USER'] + "S"
 		control.vm.network "private_network", ip: "192.168.56.110"
 		control.vm.provider "virtualbox" do |vb|
 			vb.memory = "512"
@@ -19,7 +18,7 @@ Vagrant.configure(2) do |config|
 		control.vm.provision :shell, path: "scripts/bootstrapServer.sh"
 	end
 	config.vm.define "epresa-cSW" do |control|
-		control.vm.hostname = "epresa-cSW"
+		control.vm.hostname = ENV['USER'] + "SW"
 		control.vm.network "private_network", ip: "192.168.56.111"
 		control.vm.provider "virtualbox" do |vb|
 			vb.memory = "512"

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-echo "bootstrapping serverWorker..."
-#This line is just to verify that the shell script is running correctly in the virtual machine.
-touch bootstrapServerWorker.txt
-#TODO Install K3s and configure it
+echo "Installing K3s..."
+wget -q -O - https://get.k3s.io | sh -
+if [ $? == 0 ] ; then
+   echo "K3s successfully installed"
+else
+   echo "K3s instalation has been failed"
+fi
