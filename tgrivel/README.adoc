@@ -297,6 +297,56 @@ ufw allow out to 192.168.1.1 # gateway
 ufw default allow outgoing # get access to the web
 ----
 
+=== Try to install k3s on CenOS
+
+----
+[vagrant@epresa-cS ~]$ curl -sfL https://get.k3s.io | sh -
+[INFO]  Finding release for channel stable
+[INFO]  Using v1.30.3+k3s1 as release
+[INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.30.3+k3s1/sha256sum-amd64.txt
+[INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.30.3+k3s1/k3s
+[INFO]  Verifying binary download
+[INFO]  Installing k3s to /usr/local/bin/k3s
+[INFO]  Finding available k3s-selinux versions
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+Could not retrieve mirrorlist http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os&infra=vag error was
+14: curl#6 - "Could not resolve host: mirrorlist.centos.org; Unknown error"
+
+
+ One of the configured repositories failed (Unknown),
+ and yum doesn't have enough cached data to continue. At this point the only
+ safe thing yum can do is fail. There are a few ways to work "fix" this:
+
+     1. Contact the upstream for the repository and get them to fix the problem.
+
+     2. Reconfigure the baseurl/etc. for the repository, to point to a working
+        upstream. This is most often useful if you are using a newer
+        distribution release than is supported by the repository (and the
+        packages for the previous distribution release still work).
+
+     3. Run the command with the repository temporarily disabled
+            yum --disablerepo=<repoid> ...
+
+     4. Disable the repository permanently, so yum won't use it by default. Yum
+        will then just ignore the repository until you permanently enable it
+        again or use --enablerepo for temporary usage:
+
+            yum-config-manager --disable <repoid>
+        or
+            subscription-manager repos --disable=<repoid>
+
+     5. Configure the failing repository to be skipped, if it is unavailable.
+        Note that yum will try to contact the repo. when it runs most commands,
+        so will have to try and fail each time (and thus. yum will be be much
+        slower). If it is a very temporary problem though, this is often a nice
+        compromise:
+
+            yum-config-manager --save --setopt=<repoid>.skip_if_unavailable=true
+
+Cannot find a valid baseurl for repo: base/7/x86_64
+----
+
 == Meetings
 
 === Cyber reunion
@@ -310,3 +360,22 @@ Why CentOS ?
 No particular reasons
 
 tgrivel want to setup a VPS at home for working
+
+== Resources
+
+The Kubernetes Book (Nigel Poulton) : https://github.com/rohitg00/DevOps_Books/blob/main/The%20Kubernetes%20Book%20(Nigel%20Poulton)%20(z-lib.org).pdf
+
+Kubernetes Crash Course for Absolute Beginners : https://youtu.be/s_o8dwzRlu4?si=bZlrSVcJXb9QpOOD 
+
+Vagrant documentation : https://developer.hashicorp.com/vagrant/docs
+
+Vagrant + K3s (vidéo en français) : https://www.youtube.com/watch?v=JLnjMCRLcCo
+
+Vagrant cheat sheet : https://gist.github.com/wpscholar/a49594e2e2b918f4d0c4 
+Pluralsight course : "Getting started with Kubernetes" 
+
+La vidéo 04 06 présente un exemple de déploiement d'une application sur un cluster kubernetes via argo cd. La vidéo 04 02 parle également de l'interaction entre k8s et argo cd.
+Kubernetes Playground : https://labs.play-with-k8s.com/ 
+https://www.youtube.com/watch?v=JLnjMCRLcCo
+https://portal.cloud.hashicorp.com/vagrant/discover?next=CgxXemN4TVRreU4xMD0%3D
+HashiCorp Cloud Platform
