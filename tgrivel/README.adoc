@@ -555,6 +555,12 @@ sudo apt update ; sudo apt install -y curl
 sudo curl -Lo /usr/local/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.26.5+k3s1/k3s; sudo chmod a+x /usr/local/bin/k3s
 sudo K3S_KUBECONFIG_MODE="644" K3S_TOKEN="mypassword" /usr/local/bin/k3s server --flannel-backend none --flannel-iface "eth1"
 ----
++
+I receive at the end this error:
++
+----
+E0822 14:07:19.908083    2173 kubelet.go:2475] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: cni plugin not initialized"
+----
 
 == Meetings
 
