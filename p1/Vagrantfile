@@ -1,11 +1,16 @@
+username = ENV['USER']
+vm_server = username + "-cS"
+vm_serverworker = username + "-cSW"
+vm_memory = 1024
+
 Vagrant.configure(2) do |config|
 	config.vm.box = "debian/bookworm64"
 	config.vm.synced_folder '.', '/vagrant', disabled: true
-	config.vm.define "epresa-cS" do |control|
-		control.vm.hostname = ENV['USER'] + "S"
+	config.vm.define vm_server do |control|
+		control.vm.hostname = username + "S"
 		control.vm.network "private_network", ip: "192.168.56.110"
 		control.vm.provider "virtualbox" do |vb|
-			vb.memory = "512"
+			vb.memory = vm_memory
 			vb.cpus = 1
 			vb.gui = false
 			vb.name = "Server"
@@ -13,15 +18,15 @@ Vagrant.configure(2) do |config|
 			# use of VBoxManage Customizations to make modifications to VirtualBox virtual machines
 			# https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration#vboxmanage-customizations
 			# https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
-			vb.customize ["modifyvm", :id, "--name", "epresa-cS"]
+			vb.customize ["modifyvm", :id, "--name", vm_server]
 		end
 		control.vm.provision :shell, path: "scripts/bootstrapServer.sh"
 	end
-	config.vm.define "epresa-cSW" do |control|
-		control.vm.hostname = ENV['USER'] + "SW"
+	config.vm.define vm_serverworker do |control|
+		control.vm.hostname = username + "SW"
 		control.vm.network "private_network", ip: "192.168.56.111"
 		control.vm.provider "virtualbox" do |vb|
-			vb.memory = "512"
+			vb.memory = vm_memory
 			vb.cpus = 1
 			vb.gui = false
 			vb.name = "ServerWorker"
@@ -29,7 +34,7 @@ Vagrant.configure(2) do |config|
 			# use of VBoxManage Customizations to make modifications to VirtualBox virtual machines
 			# https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration#vboxmanage-customizations
 			# https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
-			vb.customize ["modifyvm", :id, "--name", "epresa-cSW"]
+			vb.customize ["modifyvm", :id, "--name", vm_serverworker]
 		end
 		control.vm.provision :shell, path: "scripts/bootstrapServerWorker.sh"
 	end
