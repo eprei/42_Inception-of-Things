@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp2
+spec:
+  selector:
+    app: webapp2
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp2
+  labels:
+    app: webapp2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp2
+  template:
+    metadata:
+      labels:
+        app: webapp2
+    spec:
+      containers:
+        - name: IotWebApp
+          image: robindocker21/simple-web-app:1.0
+          env:
+          - name: MESSAGE
+            value: "You are in WebApp 2."
+          ports:
+            - containerPort: 8080
