@@ -5,7 +5,8 @@ metadata:
 spec:
   ingressClassName: nginx-webapp
   rules:
-  - http:
+  - host: app1.com
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -24,7 +25,8 @@ metadata:
 spec:
   ingressClassName: nginx-webapp
   rules:
-  - http:
+  - host: app2.com
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -44,7 +46,8 @@ metadata:
 spec:
   ingressClassName: nginx-webapp
   rules:
-  - http:
+  - host: app3.com
+    http:
       paths:
       - path: /
         pathType: Prefix
