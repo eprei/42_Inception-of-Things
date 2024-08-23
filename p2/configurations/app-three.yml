@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp2
+  name: app-three
 spec:
   selector:
-    app: webapp2
+    app: app-three
   ports:
   - protocol: TCP
     port: 80
@@ -15,24 +15,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp2
+  name: app-three
   labels:
-    app: webapp2
+    app: app-three
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: webapp2
+      app: app-three
   template:
     metadata:
       labels:
-        app: webapp2
+        app: app-three
     spec:
       containers:
-        - name: IotWebApp
+        - name: iot-web-app
           image: robindocker21/simple-web-app:1.0
           env:
           - name: MESSAGE
-            value: "You are in WebApp 2."
+            value: "You are in WebApp 3."
           ports:
             - containerPort: 8080
