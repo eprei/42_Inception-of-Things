@@ -11,5 +11,5 @@ wget -q -O - https://get.k3s.io | \
 if [ $? == 0 ] ; then
    echo "K3s successfully installed"
 else
-   echo "K3s instalation has been failed"
+   echo "K3s installation has been failed"
 fi
