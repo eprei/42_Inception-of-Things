@@ -456,6 +456,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_k3s_server_and_agent">3.10. K3S : Server and Agent</a></li>
 <li><a href="#_troubleshooting_vagrant_up_take_times">3.11. Troubleshooting: vagrant up take times</a></li>
 <li><a href="#_try_steps_manualy">3.12. Try steps manualy</a></li>
+<li><a href="#_how_access_to_a_vagrant_service">3.13. How access to a vagrant service</a></li>
+<li><a href="#_ingress_file">3.14. Ingress file</a></li>
 </ul>
 </li>
 <li><a href="#_meetings">4. Meetings</a>
@@ -1169,6 +1171,33 @@ sudo K3S_KUBECONFIG_MODE="644" K3S_TOKEN="mypassword" /usr/local/bin/k3s server 
 </div>
 </li>
 </ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_access_to_a_vagrant_service">3.13. How access to a vagrant service</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">pf</dt>
+<dd>
+<p>port forwarding</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Kubernetes is flexible enought that you can select your provider.</p>
+</div>
+<div class="paragraph">
+<p>For example, I use Virtual Box, so I need to configure port forwarding with virtual box</p>
+</div>
+<div class="paragraph">
+<p>public_ip -router pf&#8594; private_ip_server
+private_ip_server -cloud provider pf&#8594; private_ip_kube</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ingress_file">3.14. Ingress file</h3>
+<div class="paragraph">
+<p>Ingress need a controller, for example <a href="https://kubernetes.github.io/ingress-nginx/user-guide/basic-usage/">ingress-nginx</a>.</p>
 </div>
 </div>
 </div>
