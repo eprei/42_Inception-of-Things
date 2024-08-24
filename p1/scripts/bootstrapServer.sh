@@ -6,7 +6,6 @@ wget -q -O - https://get.k3s.io | \
 	K3S_KUBECONFIG_MODE="644" \
 	K3S_TOKEN="mypassword" \
 	sh -s - \
-	--flannel-backend none \
 	--flannel-iface "eth1"
 
 if [ $? == 0 ] ; then
