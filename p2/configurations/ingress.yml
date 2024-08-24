@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: webapp1-ingress
+  name: ingress-three-simple-applications
 spec:
   ingressClassName: nginx-webapp
   rules:
@@ -18,10 +18,6 @@ spec:
 
 ---
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: webapp2-ingress
 spec:
   ingressClassName: nginx-webapp
   rules:
@@ -39,10 +35,6 @@ spec:
 
 ---
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: webapp3-ingress
 spec:
   ingressClassName: nginx-webapp
   rules:
