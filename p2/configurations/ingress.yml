@@ -17,11 +17,6 @@ spec:
             port:
               number: 80
 
----
-
-spec:
-  ingressClassName: nginx-webapp
-  rules:
   - host: app2.com
     http:
       paths:
@@ -33,12 +28,6 @@ spec:
             port:
               number: 80
 
-
----
-
-spec:
-  ingressClassName: nginx-webapp
-  rules:
   - host: app3.com
     http:
       paths:
