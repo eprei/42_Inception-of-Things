@@ -7,7 +7,6 @@ wget -q -O - https://get.k3s.io | \
 	INSTALL_K3S_EXEC="server" \
 	K3S_KUBECONFIG_MODE="644" \
 	sh -s - \
-	--flannel-backend none \
 	--flannel-iface "eth1"
 
 if [ $? == 0 ] ; then
