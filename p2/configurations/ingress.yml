@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: ingress-three-simple-applications
 spec:
-  ingressClassName: nginx-webapp
+  ingressClassName: nginx
   rules:
     - host: app1.com
       http:
@@ -13,7 +13,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: webapp1
+                name: app-one
                 port:
                   number: 80
 
@@ -24,18 +24,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: webapp2
+                name: app-two
                 port:
                   number: 80
 
-    - host: app3.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: webapp3
-                port:
-                  number: 80
+  defaultBackend:
+    service:
+      name: app-three
+      port:
+        number: 80
 ...
