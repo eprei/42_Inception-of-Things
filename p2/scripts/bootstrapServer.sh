@@ -44,7 +44,7 @@ done
 echo "Applying NGINX Ingress Controller configuration..."
 kubectl apply -f $clusterConfigsFolder/ingress.yml
 
-while !  kubectl get ingress | grep -q "192.168.56.110" ; do
+while ! kubectl get ingress | grep -q "192.168.56.110" ; do
     echo "Waiting for the Ingres Controller to be running and available to accept requests..."
     sleep 10
 done
