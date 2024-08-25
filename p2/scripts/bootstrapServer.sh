@@ -58,11 +58,11 @@ echo "Ingres Controller configured and ready to receive requests."
 # Check to see if the service is online. This of type NodePort, so do you have an EXTERNAL-IP?
 #   kubectl get services --namespace ingress-nginx
 
-# Check out the ingressclass nginx...we have not set the is-default-class so in each of our
+# Check out the ingressclass nginx.
 # Ingresses we will need specify an ingressclassname
 #   kubectl describe ingressclasses nginx
 
-# Get the status of the ingress
+# Get the status of the ingress.
 #   kubectl get ingress --watch # Wait for the Address of intress-path to be populated before proceeding
 #   kubectl get services --namespace ingress-nginx
 
