@@ -1279,12 +1279,7 @@ private_ip_server -cloud provider pf&#8594; private_ip_kube</p>
 Unable to find image 'robindocker21/simple-web-app:1.0' locally
 1.0: Pulling from robindocker21/simple-web-app
 c41833b44d91: Pull complete
-683339ce8d6b: Pull complete
-4cf6a83c0e2a: Pull complete
-686172e40c38: Pull complete
-ec254780c27f: Pull complete
-0b4f288c0a68: Pull complete
-e1b129fd22ef: Pull complete
+[...]
 a641f100d11b: Pull complete
 Digest: sha256:9fc1c1e4166fb54ec57acfc23daa463ede25bfaaff30d99bb3815d17f813fc87
 Status: Downloaded newer image for robindocker21/simple-web-app:1.0
@@ -1292,17 +1287,23 @@ WARNING: The requested image's platform (linux/arm64/v8) does not match the dete
 exec /usr/local/bin/docker-entrypoint.sh: exec format error</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>build a new docker image with another architecture</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The virtual machine created by vagrant does not support <code>arm64/v8</code> architecture
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>push on docker hub</p>
+<p>build a new docker image with <code>amd64/v3</code> architecture</p>
 </div>
 <div class="paragraph">
-<p>change the configuration</p>
-</div>
-<div class="paragraph">
-<p>that work !</p>
+<p>push on docker hub, change the configuration and that works !</p>
 </div>
 </div>
 </div>

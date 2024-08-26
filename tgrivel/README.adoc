@@ -634,12 +634,7 @@ $ docker run --name tmp-iot -p 8080:8080 -it robindocker21/simple-web-app:1.0 sh
 Unable to find image 'robindocker21/simple-web-app:1.0' locally
 1.0: Pulling from robindocker21/simple-web-app
 c41833b44d91: Pull complete
-683339ce8d6b: Pull complete
-4cf6a83c0e2a: Pull complete
-686172e40c38: Pull complete
-ec254780c27f: Pull complete
-0b4f288c0a68: Pull complete
-e1b129fd22ef: Pull complete
+[...]
 a641f100d11b: Pull complete
 Digest: sha256:9fc1c1e4166fb54ec57acfc23daa463ede25bfaaff30d99bb3815d17f813fc87
 Status: Downloaded newer image for robindocker21/simple-web-app:1.0
@@ -647,13 +642,11 @@ WARNING: The requested image's platform (linux/arm64/v8) does not match the dete
 exec /usr/local/bin/docker-entrypoint.sh: exec format error
 ----
 
-build a new docker image with another architecture
+NOTE: The virtual machine created by vagrant does not support `arm64/v8` architecture
 
-push on docker hub
+build a new docker image with `amd64/v3` architecture
 
-change the configuration
-
-that work !
+push on docker hub, change the configuration and that works !
 
 == Meetings
 
