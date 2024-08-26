@@ -463,6 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_try_steps_manualy">4.12. Try steps manualy</a></li>
 <li><a href="#_how_access_to_a_vagrant_service">4.13. How access to a vagrant service</a></li>
 <li><a href="#_ingress_file">4.14. Ingress file</a></li>
+<li><a href="#_test_the_webapp_docker">4.15. Test the webapp docker</a></li>
 </ul>
 </li>
 <li><a href="#_meetings">5. Meetings</a>
@@ -1268,6 +1269,40 @@ private_ip_server -cloud provider pf&#8594; private_ip_kube</p>
 <h3 id="_ingress_file">4.14. Ingress file</h3>
 <div class="paragraph">
 <p>Ingress need a controller, for example <a href="https://kubernetes.github.io/ingress-nginx/user-guide/basic-usage/">ingress-nginx</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_the_webapp_docker">4.15. Test the webapp docker</h3>
+<div class="listingblock">
+<div class="content">
+<pre>$ docker run --name tmp-iot -p 8080:8080 -it robindocker21/simple-web-app:1.0 sh
+Unable to find image 'robindocker21/simple-web-app:1.0' locally
+1.0: Pulling from robindocker21/simple-web-app
+c41833b44d91: Pull complete
+683339ce8d6b: Pull complete
+4cf6a83c0e2a: Pull complete
+686172e40c38: Pull complete
+ec254780c27f: Pull complete
+0b4f288c0a68: Pull complete
+e1b129fd22ef: Pull complete
+a641f100d11b: Pull complete
+Digest: sha256:9fc1c1e4166fb54ec57acfc23daa463ede25bfaaff30d99bb3815d17f813fc87
+Status: Downloaded newer image for robindocker21/simple-web-app:1.0
+WARNING: The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64/v3) and no specific platform was requested
+exec /usr/local/bin/docker-entrypoint.sh: exec format error</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>build a new docker image with another architecture</p>
+</div>
+<div class="paragraph">
+<p>push on docker hub</p>
+</div>
+<div class="paragraph">
+<p>change the configuration</p>
+</div>
+<div class="paragraph">
+<p>that work !</p>
 </div>
 </div>
 </div>
