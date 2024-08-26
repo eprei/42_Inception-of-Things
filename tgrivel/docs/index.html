@@ -920,6 +920,25 @@ ufw allow out to 192.168.1.1 # gateway
 ufw default allow outgoing # get access to the web</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Result</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[root@iot ~]# ufw status verbose
+Status: active
+Logging: on (low)
+Default: allow (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+11960/tcp                  LIMIT IN    Anywhere                   # ssh
+
+192.168.1.0/24             DENY OUT    Anywhere
+192.168.1.1                ALLOW OUT   Anywhere</pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_try_to_install_k3s_on_cenos">4.9. Try to install k3s on CenOS</h3>
