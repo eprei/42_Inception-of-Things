@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: iot-web-app
-          image: robindocker21/simple-web-app:1.0
+          image: tgrivel/simple-web-app:1.0
           env:
           - name: MESSAGE
             value: "You are in WebApp 2."
