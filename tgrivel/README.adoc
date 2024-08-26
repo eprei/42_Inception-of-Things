@@ -19,26 +19,26 @@ vagrant up
 Useful commands to check the status of the “ingress controller”
 
 Check the status of the pods to see if the ingress controller is online.
-+
+
 ----
 kubectl get pods --namespace ingress-nginx
 ----
 
 Check to see if the service is online. This of type NodePort, so do you have an EXTERNAL-IP?
-+
+
 ----
 kubectl get services --namespace ingress-nginx
 ----
 
 Check out the ingressclass nginx.
 Ingresses we will need specify an ingressclassname
-+
+
 ----
 kubectl describe ingressclasses nginx
 ----
 
 Get the status of the ingress.
-+
+
 ----
 kubectl get ingress --watch # Wait for the Address of intress-path to be populated before proceeding
 kubectl get services --namespace ingress-nginx
