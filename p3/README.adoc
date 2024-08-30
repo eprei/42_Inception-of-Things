@@ -1,0 +1,114 @@
+= P3: Argo CD and k3d
+
+== Setup
+
+Create a cluster
+
+----
+k3d cluster create cluster-tgrivel --api-port 6443 -p 8080:80@loadbalancer --agents 2
+----
+
+The outside port (8080) forward to the loadbalancer traefik in the container from the image `ghcr.io/k3d-io/k3d-proxy:5.7.3`.
+
+k3d create a few other containers from the image `rancher/k3s:v1.30.3-k3s1`
+
+== Theory
+
+There is a server with
+
+* k3d
+* Docker
+* kubectl
+
+k3d generate a container
+
+the container contains
+
+* k3s
+
+== Try
+
+. Create the cluster
++
+----
+k3d cluster create cluster-tgrivel --api-port 6445 # firsrt
+k3d cluster create cluster-tgrivel --api-port 6445 -p 1010:8080 -p 8080:80@loadbalancer # bind argo port
+----
+
+. Create the argo CD namespace
++
+----
+kubectl create namespace argocd
+----
+
+. Apply the install of argocd
++
+----
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+----
+
+. Generate tls ssl certificate
+
+[source,bash]
+----
+#!/bin/sh
+
+HOSTNAME=$(cat /etc/hostname)
+
+################################################################################
+
+SERVER_PATH="."
+SERVER_KEY="${SERVER_PATH}/server.key"
+SERVER_CSR="${SERVER_PATH}/server.csr"
+SERVER_CRT="${SERVER_PATH}/server.crt"
+EXTFILE="${SERVER_PATH}/cert_ext.cnf"
+
+cat > ${EXTFILE} << eof
+[req]
+default_bit = 4096
+distinguished_name = req_distinguished_name
+prompt = no
+
+[req_distinguished_name]
+countryName             = CH
+stateOrProvinceName     = Vaud
+localityName            = Lausanne
+organizationName        = 42Lausanne
+commonName              = ${HOSTNAME}
+eof
+
+echo "Generating private key"
+openssl genrsa -out ${SERVER_KEY} 4096
+
+echo "Generating Certificate Signing Request"
+openssl req -new -key ${SERVER_KEY} -out ${SERVER_CSR} -config ${EXTFILE}
+
+echo "Generating self signed certificate"
+openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SERVER_CRT}
+----
+
+. Set certificate and key (see: https://argo-cd.readthedocs.io/en/stable/operator-manual/tls/#inbound-tls-certificates-used-by-argocd-repo-server[command])
+
+----
+kubectl create -n argocd secret tls argocd-server-tls \
+  --cert=/home/theo/server.crt \
+  --key=/home/theo/server.key
+----
+
+. port forward port
++
+----
+kubectl port-forward svc/argocd-server -n argocd 10999:443
+----
+
+. bind port over ssh
++
+----
+ssh iot -L 10999:localhost:10999
+----
+
+. open your browser
++
+----
+firefox https://localhost:10999
+----
