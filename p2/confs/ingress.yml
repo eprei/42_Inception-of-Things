@@ -28,8 +28,7 @@ spec:
                 port:
                   number: 80
 
-    - host: app3.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
