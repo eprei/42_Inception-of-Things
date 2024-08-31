@@ -74,6 +74,9 @@ main() {
 	k3d_init
 	kubectl_namespace
 	argocd_configure
+
+	echo "Forward port with the following command"
+	echo "kubectl port-forward svc/argocd-server -n argocd 10999:443"
 }
 
 main
