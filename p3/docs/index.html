@@ -510,8 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Create the cluster</p>
 <div class="listingblock">
 <div class="content">
-<pre>k3d cluster create cluster-tgrivel --api-port 6445 # firsrt
-k3d cluster create cluster-tgrivel --api-port 6445 -p 1010:8080 -p 8080:80@loadbalancer # bind argo port</pre>
+<pre>k3d cluster create cluster-tgrivel --api-port 6445</pre>
 </div>
 </div>
 </li>
@@ -613,6 +612,17 @@ openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SER
 <pre>firefox https://localhost:10999</pre>
 </div>
 </div>
+</li>
+<li>
+<p>set an admin password</p>
+<div class="listingblock">
+<div class="content">
+<pre>argocd admin initial-password -n argocd</pre>
+</div>
+</div>
+</li>
+<li>
+<p>TODO configure the auto update of application</p>
 </li>
 </ol>
 </div>

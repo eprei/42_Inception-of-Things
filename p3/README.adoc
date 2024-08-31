@@ -31,8 +31,7 @@ the container contains
 . Create the cluster
 +
 ----
-k3d cluster create cluster-tgrivel --api-port 6445 # firsrt
-k3d cluster create cluster-tgrivel --api-port 6445 -p 1010:8080 -p 8080:80@loadbalancer # bind argo port
+k3d cluster create cluster-tgrivel --api-port 6445
 ----
 
 . Create the argo CD namespace
@@ -112,3 +111,11 @@ ssh iot -L 10999:localhost:10999
 ----
 firefox https://localhost:10999
 ----
+
+. set an admin password
++
+----
+argocd admin initial-password -n argocd
+----
+
+. TODO configure the auto update of application
