@@ -1,17 +1,5 @@
 = P3: Argo CD and k3d
 
-== Setup
-
-Create a cluster
-
-----
-k3d cluster create cluster-tgrivel --api-port 6443 -p 8080:80@loadbalancer --agents 2
-----
-
-The outside port (8080) forward to the loadbalancer traefik in the container from the image `ghcr.io/k3d-io/k3d-proxy:5.7.3`.
-
-k3d create a few other containers from the image `rancher/k3s:v1.30.3-k3s1`
-
 == Theory
 
 There is a server with
@@ -26,7 +14,7 @@ the container contains
 
 * k3s
 
-== Try
+== Setup
 
 . Create the cluster
 +
@@ -119,3 +107,15 @@ argocd admin initial-password -n argocd
 ----
 
 . TODO configure the auto update of application
+
+== [OLD] Setup
+
+Create a cluster
+
+----
+k3d cluster create cluster-tgrivel --api-port 6443 -p 8080:80@loadbalancer --agents 2
+----
+
+The outside port (8080) forward to the loadbalancer traefik in the container from the image `ghcr.io/k3d-io/k3d-proxy:5.7.3`.
+
+k3d create a few other containers from the image `rancher/k3s:v1.30.3-k3s1`
