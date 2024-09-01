@@ -19,7 +19,7 @@ the container contains
 . Create the cluster
 +
 ----
-k3d cluster create cluster-tgrivel --api-port 6445
+k3d cluster create cluster-${USER} --api-port 6445
 ----
 
 . Create the argo CD namespace
@@ -113,7 +113,7 @@ argocd admin initial-password -n argocd
 Create a cluster
 
 ----
-k3d cluster create cluster-tgrivel --api-port 6443 -p 8080:80@loadbalancer --agents 2
+k3d cluster create cluster-${USER} --api-port 6443 -p 8080:80@loadbalancer --agents 2
 ----
 
 The outside port (8080) forward to the loadbalancer traefik in the container from the image `ghcr.io/k3d-io/k3d-proxy:5.7.3`.
