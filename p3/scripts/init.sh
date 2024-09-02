@@ -66,6 +66,15 @@ generate_certificate() {
 	openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SERVER_CRT}
 }
 
+port_forwarding() {
+    while ! kubectl get pods -n argocd | grep argocd-server | grep -q "Running" ; do
+        echo "Waiting for the argocd-server pod to be running and available to accept requests..."
+        sleep 5
+    done
+
+  	kubectl port-forward svc/argocd-server -n argocd 10999:443 > /dev/null 2>&1 &
+}
+
 main() {
 	check_commands
 
@@ -75,8 +84,7 @@ main() {
 	kubectl_namespace
 	argocd_configure
 
-	echo "Forward port with the following command"
-	echo "kubectl port-forward svc/argocd-server -n argocd 10999:443"
+  port_forwarding
 }
 
 main
