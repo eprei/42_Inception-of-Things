@@ -24,6 +24,7 @@ k3d_init() {
 
 kubectl_namespace() {
 	kubectl create namespace argocd
+	kubectl create namespace dev
 }
 
 argocd_configure() {
