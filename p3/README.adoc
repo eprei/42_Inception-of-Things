@@ -97,6 +97,14 @@ ssh iot -L 10999:localhost:10999
 firefox https://localhost:10999
 ----
 
+. get the admin password
++
+----
+kubectl --namespace argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pass
+word}" |
+base64 -d
+----
+
 . set an admin password
 +
 ----
@@ -104,3 +112,69 @@ argocd admin initial-password -n argocd
 ----
 
 . TODO configure the auto update of application
+
+== Replace port-forward command
+
+With https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#create-a-service[create a service]
+
+----
+kubectl --namespace argocd expose svc/argocd-server --port=443 --target-port=8443 --name=argocd-https
+----
+
+I got
+
+----
+$ kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   99m
+----
+
+== Apply simple example from the documentation
+
+____
+https://k3d.io/v5.7.3/usage/exposing_services/[exposing services]
+____
+
+with this file: `thatfile.yaml`
+
+[source,yaml]
+----
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80
+----
+and them commands, we have access to the nginx
+----
+CLUSTER_NAME="cluster-${USER}"
+k3d cluster create "${CLUSTER_NAME}" --api-port 6445 --port 42443:443@loadbalancer --port 42080:80@loadbalancer
+kubectl create deployment nginx --image=nginx
+kubectl create service clusterip nginx --tcp=80:80
+kubectl apply -f thatfile.yaml
+curl localhost:42080/
+----
+
+from `kubectl create service clusterip --help`
+----
+--tcp=[]:
+    Port pairs can be specified as '<port>:<targetPort>'.
+----
+
+TODO look this and adapt the manual to our situation with argocd
+
+- change rules http with https ?
+- user port number 443 instead of 80
+- ssl redirect, switch to true instead of false

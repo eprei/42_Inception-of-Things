@@ -443,6 +443,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_theory">1. Theory</a></li>
 <li><a href="#_setup">2. Setup</a></li>
+<li><a href="#_replace_port_forward_command">3. Replace port-forward command</a></li>
+<li><a href="#_apply_simple_example_from_the_documentation">4. Apply simple example from the documentation</a></li>
 </ul>
 </div>
 </div>
@@ -587,6 +589,16 @@ openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SER
 </div>
 </li>
 <li>
+<p>get the admin password</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl --namespace argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pass
+word}" |
+base64 -d</pre>
+</div>
+</div>
+</li>
+<li>
 <p>set an admin password</p>
 <div class="listingblock">
 <div class="content">
@@ -598,6 +610,103 @@ openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SER
 <p>TODO configure the auto update of application</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_replace_port_forward_command">3. Replace port-forward command</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With <a href="https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#create-a-service">create a service</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl --namespace argocd expose svc/argocd-server --port=443 --target-port=8443 --name=argocd-https</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I got</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.43.0.1    &lt;none&gt;        443/TCP   99m</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_apply_simple_example_from_the_documentation">4. Apply simple example from the documentation</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://k3d.io/v5.7.3/usage/exposing_services/">exposing services</a></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>with this file: <code>thatfile.yaml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and them commands, we have access to the nginx</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CLUSTER_NAME="cluster-${USER}"
+k3d cluster create "${CLUSTER_NAME}" --api-port 6445 --port 42443:443@loadbalancer --port 42080:80@loadbalancer
+kubectl create deployment nginx --image=nginx
+kubectl create service clusterip nginx --tcp=80:80
+kubectl apply -f thatfile.yaml
+curl localhost:42080/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>from <code>kubectl create service clusterip --help</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>--tcp=[]:
+    Port pairs can be specified as '&lt;port&gt;:&lt;targetPort&gt;'.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TODO look this and adapt the manual to our situation with argocd</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>change rules http with https ?</p>
+</li>
+<li>
+<p>user port number 443 instead of 80</p>
+</li>
+<li>
+<p>ssl redirect, switch to true instead of false</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
