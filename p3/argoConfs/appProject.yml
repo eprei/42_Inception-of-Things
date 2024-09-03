@@ -6,7 +6,7 @@ metadata:
     app: wil42
 spec:
   sourceRepos:
-  - "https://github.com/rburri-iot/iot-web-app/*"
+  - "https://github.com/rburri-iot/iot-web-app"
   destinations:
   - namespace: dev
     server: https://kubernetes.default.svc
