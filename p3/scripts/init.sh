@@ -2,6 +2,11 @@
 
 CLUSTER_NAME="cluster-${USER}"
 CERT_ARGOCD="/home/${USER}/.argocd_certificate"
+ARGO_CONFS_FOLDER="../argoconfs"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    CERT_ARGOCD="${HOME}/.argocd_certificate"
+fi
 
 # $1: command name
 check_command() {
@@ -33,6 +38,10 @@ argocd_configure() {
 	kubectl create -n argocd secret tls argocd-server-tls \
 	  --cert "${CERT_ARGOCD}/server.crt" \
 	  --key "${CERT_ARGOCD}/server.key"
+
+
+   kubectl apply -f ${ARGO_CONFS_FOLDER}/application.yml -n argocd
+   kubectl apply -f ${ARGO_CONFS_FOLDER}/appProject.yml -n argocd
 }
 
 generate_certificate() {
@@ -67,6 +76,24 @@ generate_certificate() {
 	openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SERVER_CRT}
 }
 
+port_forwarding_argocd() {
+    while ! kubectl get pods -n argocd | grep argocd-server | grep -q "Running"; do
+        echo "Waiting for the argocd-server service to be running and available to accept requests..."
+        sleep 5
+    done
+
+  	kubectl port-forward svc/argocd-server -n argocd 10999:443 > /dev/null 2>&1 &
+}
+
+port_forwarding_wil42-app() {
+    while ! kubectl get pods -n dev | grep wil42-app | grep -q "Running" || [ -z "$(kubectl get pods -n dev | grep wil42-app)" ] ; do
+        echo "Waiting for the wil42-app-service to be running and available to accept requests..."
+        sleep 5
+    done
+
+  	kubectl port-forward -n dev svc/wil42-app-service 8081:8081  > /dev/null 2>&1 &
+}
+
 main() {
 	check_commands
 
@@ -75,9 +102,8 @@ main() {
 	k3d_init
 	kubectl_namespace
 	argocd_configure
-
-	echo "Forward port with the following command"
-	echo "kubectl port-forward svc/argocd-server -n argocd 10999:443"
+	port_forwarding_argocd
+	port_forwarding_wil42-app
 }
 
 main
