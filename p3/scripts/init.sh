@@ -1,12 +1,8 @@
 #!/bin/sh
 
 CLUSTER_NAME="cluster-${USER}"
-CERT_ARGOCD="/home/${USER}/.argocd_certificate"
+CERT_ARGOCD="${HOME}/.argocd_certificate"
 ARGO_CONFS_FOLDER="../argoconfs"
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    CERT_ARGOCD="${HOME}/.argocd_certificate"
-fi
 
 # $1: command name
 check_command() {
