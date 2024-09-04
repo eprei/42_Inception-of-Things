@@ -20,7 +20,10 @@ check_commands() {
 }
 
 k3d_init() {
-	k3d cluster create "${CLUSTER_NAME}" --api-port 6445
+	k3d cluster create "${CLUSTER_NAME}" \
+		--api-port 6445 \
+		--port 42443:443@loadbalancer \
+		--port 42080:80@loadbalancer
 }
 
 kubectl_namespace() {
