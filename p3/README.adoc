@@ -176,5 +176,7 @@ from `kubectl create service clusterip --help`
 TODO look this and adapt the manual to our situation with argocd
 
 - change rules http with https ?
-- user port number 443 instead of 80
+- user port number 443 instead of 80 -> https://github.com/k3d-io/k3d/discussions/516[Expose https services]
 - ssl redirect, switch to true instead of false
+
+https://github.com/k3d-io/k3d/discussions/691[Where did traefik configmap go?]
