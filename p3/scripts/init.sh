@@ -2,7 +2,7 @@
 
 CLUSTER_NAME="cluster-${USER}"
 CERT_ARGOCD="${HOME}/.argocd_certificate"
-ARGO_CONFS_FOLDER="../argoConfs"
+ARGO_CONFS_FOLDER="argoConfs"
 
 # $1: command name
 check_command() {
