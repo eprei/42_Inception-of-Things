@@ -102,4 +102,9 @@ main() {
 	port_forwarding_wil42_app
 }
 
+if [ "$(basename $(pwd))" != "p3" ]; then
+	echo "error: you have to run the script in p3 folder"
+	exit 1
+fi
+
 main
