@@ -81,6 +81,20 @@ port_forwarding_argocd() {
   	kubectl port-forward svc/argocd-server -n argocd 10999:443 > /dev/null 2>&1 &
 }
 
+waiting_for_wil42_app() {
+    while ! kubectl get pods -n dev | grep wil42-app | grep -q "Running" || [ -z "$(kubectl get pods -n dev | grep wil42-app)" ] ; do
+        echo "Waiting for the wil42-app-service to be running and available to accept requests..."
+        sleep 5
+    done
+}
+
+print_infos(){
+  	echo "ArgoCD: http://localhost:10999"
+  	echo "ArgoCD Username: admin"
+  	echo "ArgoCD Password: $(kubectl --namespace argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
+  	echo "will42-app: curl http://localhost:8080"
+}
+
 main() {
 	check_commands
 
@@ -90,6 +104,8 @@ main() {
 	kubectl_namespace
 	argocd_configure
 	port_forwarding_argocd
+	waiting_for_wil42_app
+	print_infos
 }
 
 main
