@@ -2,7 +2,7 @@
 
 CLUSTER_NAME="cluster-${USER}"
 CERT_ARGOCD="${HOME}/.argocd_certificate"
-ARGO_CONFS_FOLDER="../argoconfs"
+ARGO_CONFS_FOLDER="../argoConfs"
 
 # $1: command name
 check_command() {
@@ -81,7 +81,7 @@ port_forwarding_argocd() {
   	kubectl port-forward svc/argocd-server -n argocd 10999:443 > /dev/null 2>&1 &
 }
 
-port_forwarding_wil42-app() {
+port_forwarding_wil42_app() {
     while ! kubectl get pods -n dev | grep wil42-app | grep -q "Running" || [ -z "$(kubectl get pods -n dev | grep wil42-app)" ] ; do
         echo "Waiting for the wil42-app-service to be running and available to accept requests..."
         sleep 5
@@ -99,7 +99,7 @@ main() {
 	kubectl_namespace
 	argocd_configure
 	port_forwarding_argocd
-	port_forwarding_wil42-app
+	port_forwarding_wil42_app
 }
 
 main
