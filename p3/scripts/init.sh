@@ -113,4 +113,9 @@ if [ "$(basename $(pwd))" != "p3" ]; then
 	exit 1
 fi
 
+if [ ! -d "${ARGO_CONFS_FOLDER}" ]; then
+	echo "error: folder \"${ARGO_CONFS_FOLDER}\""
+	exit 1
+fi
+
 main
