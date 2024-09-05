@@ -2,7 +2,7 @@
 
 CLUSTER_NAME="cluster-${USER}"
 CERT_ARGOCD="${HOME}/.argocd_certificate"
-ARGO_CONFS_FOLDER="../confs"
+ARGO_CONFS_FOLDER="confs"
 
 # $1: command name
 check_command() {
@@ -107,5 +107,15 @@ main() {
 	waiting_for_wil42_app
 	print_infos
 }
+
+if [ "$(basename $(pwd))" != "p3" ]; then
+	echo "error: you have to run the script in p3 folder"
+	exit 1
+fi
+
+if [ ! -d "${ARGO_CONFS_FOLDER}" ]; then
+	echo "error: folder \"${ARGO_CONFS_FOLDER}\""
+	exit 1
+fi
 
 main
