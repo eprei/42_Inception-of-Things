@@ -20,7 +20,7 @@ check_commands() {
 }
 
 k3d_init() {
-	k3d cluster create "${CLUSTER_NAME}" --api-port 6445
+	k3d cluster create "${CLUSTER_NAME}" --api-port 6445 -p "8080:30000@server:0"
 }
 
 kubectl_namespace() {
@@ -81,15 +81,6 @@ port_forwarding_argocd() {
   	kubectl port-forward svc/argocd-server -n argocd 10999:443 > /dev/null 2>&1 &
 }
 
-port_forwarding_wil42_app() {
-    while ! kubectl get pods -n dev | grep wil42-app | grep -q "Running" || [ -z "$(kubectl get pods -n dev | grep wil42-app)" ] ; do
-        echo "Waiting for the wil42-app-service to be running and available to accept requests..."
-        sleep 5
-    done
-
-  	kubectl port-forward -n dev svc/wil42-app-service 8081:8081  > /dev/null 2>&1 &
-}
-
 main() {
 	check_commands
 
@@ -99,7 +90,6 @@ main() {
 	kubectl_namespace
 	argocd_configure
 	port_forwarding_argocd
-	port_forwarding_wil42_app
 }
 
 main
