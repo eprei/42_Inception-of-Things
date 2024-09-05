@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    app: wil42
+  name: wil42-app
+spec:
+  project: argocd-wil42-project
+  source:
+    repoURL: https://github.com/rburri-iot/iot-web-app
+    targetRevision: main
+    path: app
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
