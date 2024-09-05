@@ -20,7 +20,7 @@ check_commands() {
 }
 
 k3d_init() {
-	k3d cluster create "${CLUSTER_NAME}" --api-port 6445 -p "8080:30000@server:0"
+	k3d cluster create "${CLUSTER_NAME}" --api-port 6445 --port "8080:30000@server:0"
 }
 
 kubectl_namespace() {
