@@ -1,0 +1,62 @@
+---
+- name: Add mate with ssh keys
+  hosts: iot
+  become: true
+
+  tasks:
+  - name: Install ufw
+    ansible.builtin.package:
+      name: ufw
+      state: latest
+
+  - name: Disable IPV6
+    ansible.builtin.replace:
+      path: /etc/default/ufw
+      regexp: '^IPV6=yes$'
+      replace: 'IPV6=no'
+
+  - name: Deny everything and enable UFW
+    community.general.ufw:
+      state: enabled
+      policy: deny
+
+  - name: Allowed ports TCP
+    community.general.ufw:
+      rule: allow
+      proto: tcp
+      port: "{{ item.port }}"
+      comment: "{{ item.comment }}"
+    with_items:
+      - "{{ ufw.allow_tcp }}"
+    when: "{{ ufw.allow_tcp }}"
+
+  - name: Allowed ports UDP
+    community.general.ufw:
+      rule: allow
+      proto: udp
+      port: "{{ item.port }}"
+      comment: "{{ item.comment }}"
+    with_items:
+      - "{{ ufw.allow_udp }}"
+    when: "{{ ufw.allow_udp }}"
+
+  - name: Allowed ports UDP
+    community.general.ufw:
+      rule: allow
+      proto: udp
+      port: "{{ item.port }}"
+      comment: "{{ item.comment }}"
+    with_items:
+      - "{{ ufw.allow_udp }}"
+    when: "{{ ufw.allow_udp }}"
+
+  - name: Limited ports
+    community.general.ufw:
+      rule: limit
+      proto: tcp
+      port: "{{ item.port }}"
+      comment: "{{ item.comment }}"
+    when: "{{ ufw.limit }}"
+    with_items:
+      - "{{ ufw.limit }}"
+...

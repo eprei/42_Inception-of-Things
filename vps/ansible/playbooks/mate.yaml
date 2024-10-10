@@ -1,0 +1,19 @@
+---
+- name: Add mate with ssh keys
+  hosts: iot
+  become: true
+
+  tasks:
+  - name: Create a user 'johnd' with a home directory
+    ansible.builtin.user:
+      name: "{{ item.username }}"
+      create_home: true
+    with_items: "{{ mate }}"
+
+  - name: Set authorized keys taken from url
+    ansible.posix.authorized_key:
+      user: "{{ item.username }}"
+      state: present
+      key: "{{ item.github_keys_url }}"
+    with_items: "{{ mate }}"
+...

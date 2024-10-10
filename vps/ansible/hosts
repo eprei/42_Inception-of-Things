@@ -1,0 +1,8 @@
+---
+iot:
+  hosts:
+    iot:
+      ansible_host: 198.168.1.2
+      ansible_user: iot
+      ansible_port: 22
+...

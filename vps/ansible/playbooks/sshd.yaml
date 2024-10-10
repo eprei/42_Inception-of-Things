@@ -1,0 +1,23 @@
+---
+- name: Add mate with ssh keys
+  hosts: iot
+  become: true
+
+  tasks:
+  - name: Set the sshd config for Archlinux
+    ansible.builtin.template:
+      src: "sshd_config_archlinux.j2"
+      dest: "/etc/ssh/sshd_config"
+    when: ansible_facts['os_family'] == "Archlinux"
+
+  - name: Set the sshd config for Debian
+    ansible.builtin.template:
+      src: "sshd_config_debian.j2"
+      dest: "/etc/ssh/sshd_config"
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Reload sshd
+    ansible.builtin.service:
+      name: "sshd"
+      state: restarted
+...

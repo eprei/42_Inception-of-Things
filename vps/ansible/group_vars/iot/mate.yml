@@ -1,0 +1,14 @@
+---
+mate:
+  - username: "eprei"
+    github_keys: "eprei"
+    github_keys_url: "https://github.com/eprei.keys"
+
+  - username: "rburri"
+    github_keys: "robinburri"
+    github_keys_url: "https://github.com/robinburri.keys"
+
+  - username: "tgrivel"
+    github_keys: "theo"
+    github_keys_url: "https://github.com/t-h2o.keys"
+...

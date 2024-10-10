@@ -1,0 +1,12 @@
+- name: Add iot dependencies
+  hosts: iot
+  become: true
+
+  tasks:
+  - name: Install iot dependencies
+    ansible.builtin.package:
+      name:
+        - "vagrant"
+        - "virtualbox-host-modules-arch"
+        - "virtualbox"
+      state: latest

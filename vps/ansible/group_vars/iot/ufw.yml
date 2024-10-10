@@ -1,0 +1,8 @@
+---
+ufw:
+  allow_tcp:
+  allow_udp:
+  limit:
+    - comment: "ssh"
+      port: 22
+...
