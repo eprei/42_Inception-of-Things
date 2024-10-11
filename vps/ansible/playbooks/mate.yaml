@@ -8,6 +8,8 @@
     ansible.builtin.user:
       name: "{{ item.username }}"
       create_home: true
+      groups: "docker"
+      append: true
     with_items: "{{ mate }}"
 
   - name: Set authorized keys taken from url
