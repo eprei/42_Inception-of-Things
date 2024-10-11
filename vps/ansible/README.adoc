@@ -1,0 +1,11 @@
+= Ansible
+
+== TODO
+
+=== k3d
+
+run this command as root in the server:
+
+----
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+----
