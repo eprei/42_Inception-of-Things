@@ -9,6 +9,8 @@
         - "vagrant"
         - "virtualbox-host-modules-arch"
         - "virtualbox"
+        - "argocd"
+        - "kubectl"
         - "docker"
       state: latest
 
