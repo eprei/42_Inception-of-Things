@@ -507,9 +507,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>Generate tls ssl certificate</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/sh
@@ -548,22 +545,17 @@ echo "Generating self signed certificate"
 openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SERVER_CRT}</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Set certificate and key (see: <a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/tls/#inbound-tls-certificates-used-by-argocd-repo-server">command</a>)</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre>kubectl create -n argocd secret tls argocd-server-tls \
-  --cert=/home/theo/server.crt \
-  --key=/home/theo/server.key</pre>
+  --cert=/home/${USER}/server.crt \
+  --key=/home/${USER}/server.key</pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>port forward port</p>
 <div class="listingblock">

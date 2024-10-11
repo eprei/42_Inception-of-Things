@@ -32,7 +32,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ----
 
 . Generate tls ssl certificate
-
++
 [source,bash]
 ----
 #!/bin/sh
@@ -72,11 +72,11 @@ openssl x509 -req -days 3650 -in ${SERVER_CSR} -signkey ${SERVER_KEY} -out ${SER
 ----
 
 . Set certificate and key (see: https://argo-cd.readthedocs.io/en/stable/operator-manual/tls/#inbound-tls-certificates-used-by-argocd-repo-server[command])
-
++
 ----
 kubectl create -n argocd secret tls argocd-server-tls \
-  --cert=/home/theo/server.crt \
-  --key=/home/theo/server.key
+  --cert=/home/${USER}/server.crt \
+  --key=/home/${USER}/server.key
 ----
 
 . port forward port
