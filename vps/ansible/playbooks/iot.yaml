@@ -9,4 +9,11 @@
         - "vagrant"
         - "virtualbox-host-modules-arch"
         - "virtualbox"
+        - "docker"
       state: latest
+
+  - name: start docker
+    ansible.builtin.service:
+      name: "docker"
+      state: started
+      enabled: true
