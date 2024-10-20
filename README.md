@@ -53,9 +53,3 @@ You will set up a personal virtual machine with Vagrant and the distribution of 
 1. Set up a local Gitlab instance in your cluster.
 2. Create a `gitlab` namespace.
 3. Ensure all previous setups work with the local Gitlab.
-
-## Submission and Peer-Evaluation
-- Submit your project in your Git repository.
-- The mandatory part must be in folders `p1`, `p2`, and `p3`.
-- The bonus part should be in a `bonus` folder.
-- Ensure all configurations and scripts are correctly organized.
